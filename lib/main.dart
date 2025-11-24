@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => di.sl<PreferenceCubit>()),
       ],
       child: MaterialApp.router(
-        title: 'Flutter Clean Arch Demo',
+        title: 'ListFlutter',
         theme: ThemeData(
           primarySwatch: Colors.blue,
           useMaterial3: true,
