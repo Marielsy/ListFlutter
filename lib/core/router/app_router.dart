@@ -5,10 +5,15 @@ import '../../features/items/presentation/pages/api_list_screen.dart';
 import '../../features/items/presentation/pages/create_item_screen.dart';
 import '../../features/items/presentation/pages/item_detail_screen.dart';
 import '../../features/items/presentation/pages/saved_items_screen.dart';
+import '../../features/items/presentation/pages/splash_screen.dart';
 
 final router = GoRouter(
-  initialLocation: '/api-list',
+  initialLocation: '/',
   routes: [
+    GoRoute(
+      path: '/',
+      builder: (context, state) => const SplashScreen(),
+    ),
     GoRoute(
       path: '/api-list',
       builder: (context, state) => const ApiListScreen(),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/router/app_router.dart';
+import 'core/theme/app_theme.dart';
 import 'features/items/presentation/cubit/api_cubit.dart';
 import 'features/items/presentation/cubit/preference_cubit.dart';
 import 'injection_container.dart' as di;
@@ -22,11 +23,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => di.sl<PreferenceCubit>()),
       ],
       child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
         title: 'ListFlutter',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          useMaterial3: true,
-        ),
+        theme: AppTheme.lightTheme,
         routerConfig: router,
       ),
     );

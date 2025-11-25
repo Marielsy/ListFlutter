@@ -14,11 +14,13 @@ class ApiLoading extends ApiState {}
 
 class ApiLoaded extends ApiState {
   final List<Item> items;
+  final List<Item> filteredItems;
 
-  const ApiLoaded(this.items);
+  const ApiLoaded(this.items, {List<Item>? filteredItems})
+      : filteredItems = filteredItems ?? items;
 
   @override
-  List<Object> get props => [items];
+  List<Object> get props => [items, filteredItems];
 }
 
 class ApiError extends ApiState {

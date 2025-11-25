@@ -12,6 +12,34 @@ This project is a technical proof of concept demonstrating Clean Architecture in
 - **Dependency Injection**: `get_it` for service locator pattern.
 - **Functional Programming**: `dartz` for `Either` type in UseCases.
 
+## Requirements Implemented
+
+### 1. State Management
+- **Cubit**: Implemented `ApiCubit` (API data) and `PreferenceCubit` (Local CRUD).
+- **States**: Loading, Success, Error states handled in both Cubits.
+
+### 2. Local Persistence
+- **Hive**: Used for local database.
+- **Models**: `LocalItem` entity and Hive adapter.
+- **CRUD**: Save, Delete, and List operations.
+
+### 3. API Consumption
+- **Dio**: Used for HTTP requests.
+- **Models**: JSON parsing with `fromJson`/`toJson`.
+- **States**: Loading, Success, Error with retry option.
+
+### 4. User Interface (UI)
+- **Responsive**: Adaptable design.
+- **Widgets**: Consistent use of margins and paddings.
+- **Global Widgets**: `LoadingWidget` (CircularProgressIndicator), `CustomErrorWidget` (Message + Retry).
+
+### 5. Navigation
+- **GoRouter**: Named routes (`/api-list`, `/prefs`, `/prefs/new`, `/prefs/:id`).
+
+### 6. Features
+- **Search**: Real-time filtering of API items.
+- **Favorites**: Save items with custom names and images.
+
 ## Architecture
 
 The project follows the Clean Architecture principles:

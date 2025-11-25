@@ -30,27 +30,72 @@ class ItemDetailScreen extends StatelessWidget {
             context.go('/prefs');
           }
         },
-        child: Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.network(item!.imageUrl, height: 200),
-              const SizedBox(height: 20),
-              Text('Custom Name: ${item!.customName}', style: Theme.of(context).textTheme.headlineSmall),
-              Text('Original Name: ${item!.apiItemName}', style: Theme.of(context).textTheme.titleMedium),
-              const SizedBox(height: 40),
-              ElevatedButton.icon(
-                onPressed: () {
-                  context.read<PreferenceCubit>().deleteItem(item!.id);
-                },
-                icon: const Icon(Icons.delete),
-                label: const Text('Delete'),
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.red, foregroundColor: Colors.white),
+              Card(
+                clipBehavior: Clip.antiAlias,
+                child: Column(
+                  children: [
+                    Container(
+                      height: 250,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: Colors.grey[100],
+                      ),
+                      child: Image.network(
+                        item!.imageUrl,
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(24.0),
+                      child: Column(
+                        children: [
+                          Text(
+                            item!.customName,
+                            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            'Original: ${item!.apiItemName}',
+                            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  color: Colors.grey[600],
+                                ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              const SizedBox(height: 10),
-              OutlinedButton(
-                onPressed: () => context.pop(),
-                child: const Text('Back'),
+              const SizedBox(height: 32),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton.icon(
+                  onPressed: () {
+                    context.read<PreferenceCubit>().deleteItem(item!.id);
+                  },
+                  icon: const Icon(Icons.delete),
+                  label: const Text('Delete Item'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Theme.of(context).colorScheme.error,
+                    foregroundColor: Colors.white,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton(
+                  onPressed: () => context.pop(),
+                  child: const Text('Back to List'),
+                ),
               ),
             ],
           ),

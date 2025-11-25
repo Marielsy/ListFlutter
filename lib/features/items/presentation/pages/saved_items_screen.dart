@@ -38,25 +38,44 @@ class _SavedItemsScreenState extends State<SavedItemsScreen> {
             if (state.items.isEmpty) {
               return const Center(child: Text('No saved items'));
             }
-            return ListView.builder(
+            return ListView.separated(
+              padding: const EdgeInsets.only(top: 8, bottom: 24),
               itemCount: state.items.length,
+              separatorBuilder: (context, index) => const SizedBox(height: 4),
               itemBuilder: (context, index) {
                 final item = state.items[index];
-                return ListTile(
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(item.imageUrl), // In real app, handle error
-                  ),
-                  title: Text(item.customName),
-                  subtitle: Text(item.apiItemName),
-                  trailing: IconButton(
-                    icon: const Icon(Icons.delete, color: Colors.red),
-                    onPressed: () {
-                      context.read<PreferenceCubit>().deleteItem(item.id);
+                return Card(
+                  child: ListTile(
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(item.imageUrl),
+                      onBackgroundImageError: (_, __) => {},
+                      backgroundColor: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
+                      child: item.imageUrl.isEmpty 
+                          ? Text(item.customName[0].toUpperCase()) 
+                          : null,
+                    ),
+                    title: Text(
+                      item.customName,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: Text(item.apiItemName),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                          icon: const Icon(Icons.delete, color: Colors.red),
+                          onPressed: () {
+                            context.read<PreferenceCubit>().deleteItem(item.id);
+                          },
+                        ),
+                        const Icon(Icons.arrow_forward_ios, size: 16),
+                      ],
+                    ),
+                    onTap: () {
+                      context.go('/prefs/${item.id}', extra: item);
                     },
                   ),
-                  onTap: () {
-                    context.go('/prefs/${item.id}', extra: item);
-                  },
                 );
               },
             );
