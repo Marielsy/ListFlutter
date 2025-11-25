@@ -5,14 +5,14 @@ import '../../features/items/presentation/pages/api_list_screen.dart';
 import '../../features/items/presentation/pages/create_item_screen.dart';
 import '../../features/items/presentation/pages/item_detail_screen.dart';
 import '../../features/items/presentation/pages/saved_items_screen.dart';
-import '../../features/items/presentation/pages/splash_screen.dart';
+import '../../features/splash/splash.dart';
 
 final router = GoRouter(
   initialLocation: '/',
   routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) => const SplashScreen(),
+      builder: (context, state) => const SplashPage(),
     ),
     GoRoute(
       path: '/api-list',
