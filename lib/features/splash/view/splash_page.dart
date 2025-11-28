@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import '../cubit/cubit.dart';
+import '../cubit/splash_cubit.dart';
 import 'brand_splash_view.dart';
 
 class SplashPage extends StatelessWidget {
@@ -29,9 +29,7 @@ class _SplashView extends StatelessWidget {
       },
       child: Scaffold(
         backgroundColor: Theme.of(context).primaryColor,
-        body: const Center(
-          child: BrandSplashView(),
-        ),
+        body: const Center(child: BrandSplashView()),
       ),
     );
   }
